@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import br.edu.usj.mycamping.model.locacao.Locacao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +25,8 @@ import lombok.Setter;
 public class Lotes {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     Long id;
 
     Integer numero_lote;
