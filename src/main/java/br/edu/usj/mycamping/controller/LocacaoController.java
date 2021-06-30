@@ -39,7 +39,6 @@ public class LocacaoController {
     @GetMapping(value="/mostrarLocacao")
     public ModelAndView getLocacao() {
         List<Locacao> listarLocacao = locacaoRepository.findAll();
-        
         ModelAndView md = new ModelAndView("mostrarLocacao");
         md.addObject("listarLocacao", listarLocacao);
         md.addObject("lista_lotes", lotesRepository.findAll());
@@ -49,26 +48,22 @@ public class LocacaoController {
     
     //*********************MAPEAR LOCAÇÃO************************//
     @GetMapping(value="/cadastrarLocacao")
-    public ModelAndView getCadastraLocacao() {
-        
+    public ModelAndView getCadastraLocacao() {        
         Locacao locacao = new Locacao();
         ModelAndView md = new ModelAndView("cadastrarLocacao");
         md.addObject("locacao", locacao);
         md.addObject("lista_locacao", locacaoRepository.findAll());
         md.addObject("lista_lotes", lotesRepository.findAll());
-        // locacao.setFlagReservar(true);
         return md;
     }
     
     //*********************INSERIR LOCAÇÃO************************//
     @PostMapping(value="/cadastrarLocacao")
     public String postInserirLocacao(Locacao locacao) {
-        
         locacaoRepository.save(locacao);
         ModelAndView md = new ModelAndView("/cadastrarLocacao");
         md.addObject("lista_locacao", locacaoRepository.findAll());
         md.addObject("lista_lotes", lotesRepository.findAll());
-        
         return "redirect:/paginaInicial";
         
     }

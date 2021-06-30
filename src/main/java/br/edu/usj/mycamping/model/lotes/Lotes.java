@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-
 import br.edu.usj.mycamping.model.locacao.Locacao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Lotes {
-
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +33,6 @@ public class Lotes {
     @OneToMany
     @JoinColumn(name="id_lote")
     List<Locacao> locacao;
-
-
-
 
 }
 

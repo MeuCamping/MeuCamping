@@ -29,7 +29,6 @@ public class Locacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    
     String nome;
     String email;
     String telefone;
@@ -47,5 +46,4 @@ public class Locacao {
     @JoinColumn(name="id_lote")
      public Lotes lotes;
 
-    
 }
