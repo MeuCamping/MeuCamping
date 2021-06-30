@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Camping</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid bg-topo">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark ml-5">
+                <a href="/#" class="navbar-brand col-sm">
+                    <img src="/img/logo.png" height="80" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Menu Colapso">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div class="col-sm-5 ml-5 pl-5">
+                    <h2 class="text-center ">Cadastrar Administrador
+                        <span class="underline"></span>
+                    </h2>
+                </div>
+                <div id="menu" class="collapse navbar-collapse col-sm">
+                    <ul class="navbar-nav text-light ">
+                        <li class="nav-item">
+                            <a href="/mostrarAdmin" class="btn btn-outline-light btn-sm p-2 " tabindex="-1"
+                                role="button">Visualizar Admin</a>
+                            <a href="/paginaInicial" class="btn btn-outline-light btn-sm p-2"><i
+                                    class="fas fa-sign-out-alt">Voltar</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container-fluid conteudo_cliente">
+        <div class="container">
+            <h1 class="text-center">Informe os dados do Administrador</h1>
+            <form method="POST" th:action="@{/cadastrarAdmin}" class="text-light">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nomeAdmin">Nome</label>
+                        <input type="text" class="form-control validaInput" id="nomeAdmin" name="nome" onfocus placeholder="Ex: Renilson Moreira"
+                            required th:value="${admin.nome}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        <label for="cpfAdmin">CPF</label>
+                        <input type="text" class="form-control validaInput" id="cpfAdmin" name="cpf" required placeholder="999.999.999.99" th:value="${admin.cpf}">
+                    </div>
+                    <div class="form-group col-md">
+                        <label for="telefoneAdmin">Celular</label>
+                        <input type="text" class="form-control validaInput" id="telefoneAdmin" name="telefone" placeholder="(88) 88888-8888"
+                            required th:value="${admin.telefone}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="loginAdmin">Login/Usuário</label>
+                        <input type="text" class="form-control validaInput" id="loginAdmin" name="login"
+                            required placeholder="Ex: alfrizio Admin" th:value="${admin.login}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="senhaAdmin">Senha</label>
+                        <input type="text" class="form-control validaInput" id="senhaAdmin" name="senha" required th:value="${admin.senha}"
+                        title="A senha deve conter ao menos 1 letra minúscula, 1 letra maiúscula 1 número ou caractere especial e ter um mínimo de 8 caracteres"
+                        pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="contraSenhaAdmin">Confirmação de senha</label>
+                        <input type="text" class="form-control validaInput" id="contraSenhaAdmin" name="contraSenha" required th:value="${admin.contraSenha}">
+                        <small>&sext; a senha e contra senha devem ser iguais para habilitar o botão <b>Cadastrar</b></small>
+                    </div>
+                </div>
+
+                <div class="form-row mt-3 pb-5 pl-1">
+                    <input type="hidden" name="id" th:value="${admin.id}">
+                    <input type="submit" class="btn btn-success" id="botaoAdmin" value="Cadastrar"> 
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="rodape_cliente">
+        <div class="container-fluid bg-rodape2 pb-5">
+            <div class="container">
+                <img src="/img/logoAzul.png" class="img-fluid mx-auto d-block">
+                <div class="text-center pt-1">
+                    <a href="https://www.facebook.com/" class="icone-social" target="_blank"><i
+                            class="fab fa-facebook-square fa-lg"></i></a>
+                    <a href="https://www.instagram.com/" class="icone-social" target="_blank"><i
+                            class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://twitter.com/login?lang=pt" class="icone-social" target="_blank"><i
+                            class="fab fa-twitter-square fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/home" class="icone-social" target="_blank"><i
+                            class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        // VALIDA CADASTRO DO ADMINISTRADOR
+        document.getElementById("botaoAdmin").disabled = true;
+        document.getElementById("botaoAdmin").style.backgroundColor = "#615e5ebe";
+        document.getElementById("botaoAdmin").style.color = "#b9b5b5";
+                
+        document.querySelectorAll('.validaInput').forEach((el) => {
+        el.addEventListener('input', (event) => {
+
+        var nome = document.getElementById("nomeAdmin").value;
+        var cpf = document.getElementById("cpfAdmin").value;
+        var login = document.getElementById("loginAdmin").value;
+        var telefone = document.getElementById("telefoneAdmin").value;
+        var senha = document.getElementById("senhaAdmin").value;
+        var contraSenha = document.getElementById("contraSenhaAdmin").value;
+
+                if (nome !== null && nome !== '' && cpf !== null && cpf !== '' && login !== null && login !== ''
+                    && telefone !== null && telefone !== '' && senha !== null && senha !== '' && contraSenha !== null && contraSenha !== ''
+                    && senha === contraSenha)
+                {   
+                    document.getElementById("botaoAdmin").style.backgroundColor = "#349244";
+                    document.getElementById("botaoAdmin").style.color = "#ffffff";
+                    document.getElementById("botaoAdmin").disabled = false;
+                    
+                } else {
+                    document.getElementById("botaoAdmin").disabled = true;
+                    document.getElementById("botaoAdmin").style.backgroundColor = "#615e5ebe";
+                    document.getElementById("botaoAdmin").style.color = "#b9b5b5";
+                }
+            })
+        })
+
+        
+    </script>
+    <script type="text/javascript" src="/js/jquery-min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+</body>
+
+</html>

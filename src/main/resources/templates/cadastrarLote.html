@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Camping</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body class="corBackBody">
+    <div class="container-fluid bg-topo mb-5">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a href="/paginaInicial" class="navbar-brand col-sm-3">
+                    <img src="/img/logo.png" height="80" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Menu Colapso">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div class="col-sm-5 ml-4">
+                    <h2 class="text-center ">Cadastro de Lotes
+                        <span class="underline"></span>
+                    </h2>
+                </div>
+                <div id="menu" class="collapse navbar-collapse col-sm">
+                    <ul class="navbar-nav text-light ">
+                        <li class="nav-item">
+                            <a href="/mostrarLotes" class="btn btn-outline-light btn-sm p-2" tabindex="-1" role="button">Visualizar Lotes</a>
+                            <a href="/paginaInicial" class="btn btn-outline-light btn-sm p-2"><i class="fas fa-sign-out-alt">Inicio</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container-fluid conteudo_cliente mb-5">        
+        <div class="container">
+            <h2 class="text-center">Informe os dados do Lote</h2>
+            <form method="POST" th:action="@{/cadastrarLote}" class="text-white">
+                <div class="form-row">
+                    <div class="form-group col-sm">
+                        <label class="font-weight-normal" for="numero_lote">Número do Lote</label>
+                        <input type="number" class="form-control shadow-sm  bg-white rounded font-weight-light validaInputLote" id="numero_lote" name="numero_lote" required th:value="${lotes.numero_lote}" >
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label class="font-weight-normal" for="preco">Preço</label>
+                        <input type="number" class="form-control shadow-sm  bg-white rounded font-weight-light validaInputLote" id="preco" name="preco" required th:value="${lotes.preco}" >
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="font-weight-normal" for="areaLote">Área do Lote M²</label>
+                        <input type="number" class="form-control shadow-sm  bg-white rounded font-weight-light validaInputLote" id="areaLote" name="area" required th:value="${lotes.area}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm">
+                        <label class="font-weight-normal" for="descLote">Descrição do Lote</label>
+                        <input type="text" class="form-control shadow-sm  bg-white rounded font-weight-light validaInputLote" id="descLote" rows="10" name="descricao" required th:value="${lotes.descricao}"></input>
+                    </div>
+                </div>
+                <div class="form-row mt-3 pl-1">
+                    <input type="hidden" name="id" th:value="${lotes.id}">
+                    <input type="submit" class="btn btn-success" id="botaoLote" value="Cadastrar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="rodape_cliente mt-5">
+        <div class="container-fluid bg-rodape2 pb-5">
+            <div class="container">
+                <img src="/img/logoAzul.png" class="img-fluid mx-auto d-block">
+                <div class="text-center pt-1">
+                    <a href="https://www.facebook.com/" class="icone-social" target="_blank"><i class="fab fa-facebook-square fa-lg"></i></a>
+                    <a href="https://www.instagram.com/" class="icone-social" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://twitter.com/login?lang=pt" class="icone-social" target="_blank"><i class="fab fa-twitter-square fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/home" class="icone-social" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        // VALIDA CADASTRO DO LOTE
+        document.getElementById("botaoLote").disabled = true;
+        document.getElementById("botaoLote").style.backgroundColor = "#615e5ebe";
+        document.getElementById("botaoLote").style.color = "#b9b5b5";
+                
+        document.querySelectorAll('.validaInputLote').forEach((el) => {
+            el.addEventListener('input', (event) => {
+                
+                var numero_lote = document.getElementById("numero_lote").value;
+                var preco = document.getElementById("preco").value;
+                var areaLote = document.getElementById("areaLote").value;
+                var descLote = document.getElementById("descLote").value;
+
+
+                if (numero_lote !== null && numero_lote !== '' && preco !== null && preco !== ''
+                    && areaLote !== null && areaLote !== '' && descLote !== null && descLote !== '')
+                {   
+                    document.getElementById("botaoLote").style.backgroundColor = "#349244";
+                    document.getElementById("botaoLote").style.color = "#ffffff";
+                    document.getElementById("botaoLote").disabled = false;
+                } else {
+                    document.getElementById("botaoLote").disabled = true;
+                    document.getElementById("botaoLote").style.backgroundColor = "#615e5ebe";
+                    document.getElementById("botaoLote").style.color = "#b9b5b5";
+                }
+            })
+        })
+
+    </script>
+   
+    <script type="text/javascript" src="/js/jquery-min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+</body>
+
+</html>

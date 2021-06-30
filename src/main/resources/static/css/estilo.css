@@ -1,0 +1,320 @@
+.bg-topo{
+    background-color: #7db569;
+    
+}
+
+.corBackBody {
+    background-color: #7db569;
+}
+
+.corDeFundoBodyMostrarLocacao {
+    background-color: #7db569;
+}
+
+.corFundoBodyMostrarLotes {
+    background-color: #7db569;
+}
+
+.img-camping{
+    width: 300px;
+}
+
+/* Seção de lotes disponiveis */
+.bg-lotesDisponiveis{
+    background: linear-gradient(131.26deg, #312b45 30%, #ff3859 100%);
+}
+/* Seção de clientes */
+.bg-clientes{
+    background-color: #7db569;
+}
+.padding-clientes{
+    /* important para o bootstrap não bloquear */
+    padding: 2px !important;
+}
+
+/* Seção Lotes alugados parallax */
+.bg-parallax{
+    background: url(../img/fundo-parallax.jpg) fixed;
+    background-repeat: cover;
+    
+}
+.fatos{
+    text-align: center;
+    color: #fff;
+}
+.fatos .icon{
+    font-size: 50px;
+    color: #fff;
+
+}
+.fatos h3{
+    font-size: 35px;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.fatos h4{
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 1px;
+}
+/* Configurações dos lotes disponiveis */
+.tabela-preco{
+    padding: 0 0 40px 0;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    border:  1px solid #f1f1f1;
+}
+.tabela-preco .preco-detalhe h2{
+    font-size: 26px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    background-color: #f1f1f1;
+    padding: 30px 0;
+
+}
+.tabela-preco .preco-detalhe span{
+    display: block;
+    font-size: 30px;
+    font-weight: 400;
+    color: #4c465f;
+    margin-bottom: 10px;
+}
+.tabela-preco .preco-detalhe ul{
+    margin-bottom: 15px;
+    padding: 0 !important;
+}
+.tabela-preco .preco-detalhe ul li{
+    padding: 5px;
+    font-size: 15px;
+    border-bottom: 1px dotted #f1f1f1;
+    list-style: none;
+}
+.btn-preco{
+    border: 1px solid  #7db569;
+    background-color:  #7db569;
+    position: relative;
+    color: #fff;
+    z-index: 1;
+    border-radius: 5px;
+
+}
+
+.btn-preco:hover{
+     color: #fff;
+     background-color: #4c465f;
+     border-color: #4c465f;
+     transition: all .50s ease-in-out;
+     /* p funcionar em outros navegadores */
+     -moz-transition: all .50s ease-in-out;
+     -webkit-transition: all .50s ease-in-out;
+
+}
+/* RODAPÉ */
+.bg-rodape1{
+    /* background-color: #3f8f50; */
+    background-color: white;
+
+}
+.bg-rodape1 ul {
+-webkit-padding-start: 0;
+}
+
+.bg-rodape1 ul li{
+  list-style: none;
+}
+
+.bg-card-rodape{
+   background-color: #4c465f;
+}
+
+.icon-banner-rodape{
+    color:#7db569;
+}
+
+
+
+    /* Botão flutuante */
+html{scroll-behavior: smooth;}
+#btnTop{
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+    color:red ;
+    background-color: #fff;
+    border: none;
+    border-radius: 100vh;
+    display: none;
+}
+/* Rodape 2 */
+
+.bg-rodape2{
+    background-color: #4c465f;
+}
+
+.a.icone-social{
+    color: #b3aec2;
+}
+/* Configurações Gerais */
+.underline{
+    content: '';
+    border-top: 2px solid #ff3859;
+    width: 200px;
+    display: block;
+    margin-bottom: 8px;
+    margin: 0 auto;
+}
+.underline-footer{
+    content: '';
+    border-top: 2px solid #ff3859;
+    width: 70px;
+    display: block;
+    margin-top: 5px;
+    
+}
+
+.sombra:hover{
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+}
+
+
+/* RELATORIOS */ 
+
+.modal-content {
+    background-color: #54a338;
+}
+
+.voltar_pagina {
+   display: flex;
+   justify-content: center;
+   margin-top: 2rem;
+}
+
+#tabela_data {
+    display: none;
+}
+
+#tabela_locacao {
+    display: none;
+    margin-bottom: 10rem;
+}
+
+#fecha-relatorio {
+    display: flex;
+    float: right;            
+}
+
+#tabela_nome {
+    display: none;
+}
+
+#fecha-relatorio:hover {
+    cursor: pointer;
+}
+
+.data_relatorio {
+    margin-top: 10rem;
+}
+
+.btn-locacao {
+  margin-left: 105px;
+}
+
+.cabecalho {
+    border-bottom: 1px solid beige;
+    top: 0;
+    position: fixed;
+    z-index: 10;
+    background-color: #7db569;
+    width: 100%;
+    margin-bottom: 3rem;
+    align-content: center!important;
+    float: right!important;   
+}
+
+.footer {
+    border-bottom: 2px solid white;
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>> CSS DA PAGINA DE CADASTRO DE CLIENTES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+.modal-content {
+    background-color: #54a338;
+}
+
+.msg-cliente {
+   text-align: center;
+   font-weight: 700;
+   color: white;
+   margin-top: 1rem;
+}
+
+.cabecalho {
+    border-bottom: 1px solid beige;
+    top: 0;
+    position: fixed;
+    z-index: 10;
+    background-color: #7db569;
+    width: 100%;
+    margin-bottom: 3rem;
+    align-content: center!important;
+    float: right!important;   
+}
+
+.conteudo {
+    margin-top: 8rem!important;
+    float: right!important;   
+}
+
+#menu-navegacao_header {
+    float: right!important;    
+}
+
+#menu {
+    justify-content: flex-end;
+}
+
+.cab-header {
+    background-color: black!important;
+    float: right!important;   
+}
+
+.conteudo_cliente {
+    background-color: #7db569;
+}
+
+#numeroLote {
+    visibility: hidden;
+}
+
+.loginImg {
+    display: flex;
+   justify-content: center;
+}
+
+.formInput {
+    display: flex;
+    justify-content: center;
+}
+
+.loginForm {
+    background-color: rgba(223, 219, 219, 0.678);
+    margin: 4rem 25rem 2rem 25rem; 
+    padding: 5rem 0 5rem 0;   
+}
+
+.botaoLogar {
+    margin-top: 2rem;
+    width: 24rem;
+    color: #ffffff;
+}

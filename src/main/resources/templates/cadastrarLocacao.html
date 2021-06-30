@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Camping</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid bg-topo">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark ml-5">
+                <a href="/paginaInicial" class="navbar-brand col-sm">
+                    <img src="/img/logo.png" height="80" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Menu Colapso">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div class="col-sm-5 ml-5 pl-5">
+                    <h2 class="text-center ">Cadastrar Locações
+                        <span class="underline"></span>
+                    </h2>
+                </div>
+                <div id="menu" class="collapse navbar-collapse col-sm">
+                    <ul class="navbar-nav text-light ">
+                        <li class="nav-item">
+                            <a href="/mostrarLocacao" class="btn btn-outline-light btn-sm p-2 " tabindex="-1"
+                                role="button">Locações</a>
+                            <a href="/paginaInicial" class="btn btn-outline-light btn-sm p-2"><i
+                                    class="fas fa-sign-out-alt">Voltar</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+        aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid conteudo_cliente">
+        <div class="container">
+            <h1 class="text-center">Informe os dados da Locação</h1>
+            <form method="POST" th:action="@{/cadastrarLocacao}" class="text-light">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control validaInput" id="nome" name="nome" placeholder="Ex: Renilson Moreira" required
+                            th:value="${locacao.nome}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control validaInput" id="email" name="email" required
+                            placeholder="Ex: alfrizio@outlookcom" th:value="${locacao.email}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="telefoneFixo">N° Telefone</label>
+                        <input type="tel" class="form-control validaInput" id="telefone" name="telefone" required
+                            placeholder="Ex: (88) 88888-8888" th:value="${locacao.telefone}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control validaInput" id="cpf" name="cpf" required placeholder="Ex: 999.999.999.99" th:value="${locacao.cpf}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <div> 
+                            <label for="lotes">Lotes</label>
+                        </div> 
+                        <select id="lotes" th:field="${locacao.lotes}" required class="form-control">
+                            <option value="" disabled>Selecione o Lote</option>
+                            <option th:each="a : ${lista_lotes}" name="lotes" th:value="${a.id}" th:text="${a.numero_lote}" id="numero_lote" class="validaInput"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="dataCheckin">Informe a data de Check-in:</label>
+                        <input type="date" class="form-control validaInput" id="dataCheckin" name="dataCheckin" required
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" th:value="${locacao.dataCheckin}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="dataCheckout">Informe a data de Check-out:</label>
+                        <input type="date" class="form-control validaInput" id="dataCheckout" name="dataCheckout" required
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" th:value="${locacao.dataCheckout}">
+                    </div>
+                </div>
+                <div class="form-row mt-3 pb-5 pl-1">
+                    <input type="hidden" name="id" th:value="${locacao.id}">
+                    <input type="submit" class="btn btn-success" id="botaoLocacao" value="Cadastrar">
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="rodape_cliente">
+        <div class="container-fluid bg-rodape2 pb-5">
+            <div class="container">
+                <img src="/img/logoAzul.png" class="img-fluid mx-auto d-block">
+                <div class="text-center pt-1">
+                    <a href="https://www.facebook.com/" class="icone-social" target="_blank"><i
+                            class="fab fa-facebook-square fa-lg"></i></a>
+                    <a href="https://www.instagram.com/" class="icone-social" target="_blank"><i
+                            class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://twitter.com/login?lang=pt" class="icone-social" target="_blank"><i
+                            class="fab fa-twitter-square fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/home" class="icone-social" target="_blank"><i
+                            class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+         // VALIDA CADASTRO DA LOCACAO
+         document.getElementById("botaoLocacao").disabled = true;
+        document.getElementById("botaoLocacao").style.backgroundColor = "#615e5ebe";
+        document.getElementById("botaoLocacao").style.color = "#b9b5b5";
+                
+        document.querySelectorAll('.validaInput').forEach((el) => {
+        el.addEventListener('input', (event) => {
+
+        var nome = document.getElementById("nome").value;
+        var email = document.getElementById("email").value;
+        var telefone = document.getElementById("telefone").value;
+        var cpf = document.getElementById("cpf").value;
+        var numero_lote = document.getElementById("numero_lote").value;
+        var dataCheckin = document.getElementById("dataCheckin").value;
+        var dataCheckout = document.getElementById("dataCheckout").value;
+
+                if (nome !== null && nome !== '' && cpf !== null && cpf !== '' && numero_lote !== null && numero_lote !== ''
+                    && telefone !== null && telefone !== '' && email !== null && email !== '' && dataCheckin !== null && dataCheckin !== ''  && dataCheckout !== null && dataCheckout !== '')
+                {   
+                    document.getElementById("botaoLocacao").style.backgroundColor = "#349244";
+                    document.getElementById("botaoLocacao").style.color = "#ffffff";
+                    document.getElementById("botaoLocacao").disabled = false;
+                } else {
+                    document.getElementById("botaoLocacao").disabled = true;
+                    document.getElementById("botaoLocacao").style.backgroundColor = "#615e5ebe";
+                    document.getElementById("botaoLocacao").style.color = "#b9b5b5";
+                }
+            })
+        })
+    </script>
+    
+    <script type="text/javascript" src="/js/jquery-min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+</body>
+
+</html>

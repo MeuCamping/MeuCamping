@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Camping</title>
+    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid bg-topo">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a href="/paginaInicial" class="navbar-brand">
+                    <img src="img/logo.png" height="80" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Menu Colapso">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div id="menu" class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto text-light">
+                        <li class="nav-item">
+                            <a href="#lotesDisponiveis" class="nav-link text-light font-weight-bold scroll-page">Lotes
+                                Disponiveis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#lotesAlugados" class="nav-link text-light font-weight-bold scroll-page">Lotes
+                                Alugados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#enviarCartao" class="nav-link text-light font-weight-bold scroll-page">Enviar Cartão</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav text-light ">
+                        <li class="nav-item">
+                            <a href="/mostrarLocacao" class="btn btn-outline-light btn-sm p-2 " tabindex="-1" role="button">Locações Cadastradas</a>
+                            <a href="/cadastrarLote" class="btn btn-outline-light btn-sm p-2" tabindex="-1" role="button">Cadastro de Lotes</a>
+                            <a href="/mostrarLotes" class="btn btn-outline-light btn-sm p-2" tabindex="-1" role="button">Visualizar Lotes</a>
+                            <a href="/cadastrarAdmin" class="btn btn-outline-light btn-sm p-2" tabindex="-1" role="button">Administrador</a>
+                            <a href="/index" class="btn btn-outline-light btn-sm p-2"><i class="fas fa-sign-out-alt">Sair</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div id="lotesDisponiveis" class="container-fluid">
+        <div class="my-2 py-4">
+            <section class="container">
+                <header class="col-md-12">
+                    <h2 class="text-center ">Lotes Disponiveis
+                        <span class="underline"></span>
+                    </h2>
+                </header>
+                    <div class="row py-4 reservarLote"  th:if="${listarLotes.size() != null}">
+                        <div class="col-sm-6 col-md-3 col-xs-12" th:each="lotes : ${listarLotes}" id="nomeCliente">
+                            <div class="tabela-preco sombra">
+                                <div class="preco-detalhe">
+                                    <h2 th:href="@{/paginaInicial/{id}(id=${lotes.id})}" th:text="|LOTE ${lotes.numero_lote}|"></h2>
+                                    <span th:href="@{/paginaInicial/{id}(id=${lotes.id})}" th:text="|R$ ${lotes.preco}|"></span>
+                                    <ul>
+                                        <li th:href="@{/paginaInicial/{id}(id=${lotes.id})}" th:text="|Área: ${lotes.area}|"></li>
+                                        <li th:href="@{/paginaInicial/{id}(id=${lotes.id})}" th:text="|${lotes.descricao}|"></li>
+                                        <li><a href="/cadastrarLocacao" class="btn btn-outline-primary p-1 mx-1 btnReservar">Reservar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+            </section>
+        </div>
+    </div>
+   
+    <div id="lotesAlugados" class="container-fluid bg-parallax mt-2">
+        <div class="py-4">
+            <section class="container">
+                <header class="col-md-12">
+                    <h2 class="text-center text-light">Lotes Alugados
+                        <span class="underline"></span>
+                    </h2>
+                    <p class="text-center text-light">Informações atualizadas em tempo real após qualquer dado </p>
+                </header>
+                <div class="row py-2">
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="fatos">
+                            <div class="icon">
+                                <i class="fa fa-clock"></i>
+                            </div>
+                            <div class="fatos-contador">
+                                <h3>+<span class="contar">10300</span></h3>
+                                <h4>Campings Alugados</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="fatos">
+                            <div class="icon">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <div class="fatos-contador">
+                                <h3><span class="contar">4</span></h3>
+                                <h4>Disponiveis no Momento</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="fatos">
+                            <div class="icon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <div class="fatos-contador">
+                                <h3><span class="contar">270</span></h3>
+                                <h4>Clientes que visitaram nosso Camping</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="fatos">
+                            <div class="icon">
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="fatos-contador">
+                                <h3><span class="contar">4.8</span></h3>
+                                <h4>Média de Avaliação</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="container-fluid bg-rodape1">
+        <div id="enviarCartao" class="container py-5">
+            <div class="row ">
+                <div class="col-md-6 mx-auto">
+                    <div class="card text-light mb-3 bg-card-rodape">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-map-signs mr-2 fa-2x icon-banner-rodape"></i>
+                                Meu Camping</h4>
+                            <p class="card-text text-justify">
+                                Acesse os meios de comunicação abaixo para caso de duvidas
+                                ou problemas no sistema Meu Camping
+                            </p>
+                            <h6><i class="fa fa-phone-square"> (48)99999-0909</i></h6>
+                            <h6><i class="fa fa-envelope "> meucamping@meucamping.com</i></h6>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="backToTop()" id="btnTop"><i class="fas fa-arrow-up fa-lg"></i></button>
+            </div> 
+            <div class="col-md-2 mx-auto">
+                <button class="btn btn-preco">Enviar cartão</button>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="container-fluid bg-rodape2">
+        <div class="container py-4">
+            <img src="img/logoAzul.png" class="img-fluid mx-auto d-block">
+            <div class="text-center pt-1">
+                <a href="https://www.facebook.com/" class="icone-social" target="_blank"><i class="fab fa-facebook-square fa-lg"></i></a>
+                <a href="https://www.instagram.com/" class="icone-social" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://twitter.com/login?lang=pt" class="icone-social" target="_blank"><i class="fab fa-twitter-square fa-lg"></i></a>
+                <a href="https://www.linkedin.com/home" class="icone-social" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="js/waypoints.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>

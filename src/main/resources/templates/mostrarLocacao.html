@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Camping</title>
+    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body class="corDeFundoBodyMostrarLocacao">
+    <div class="container-fluid bg-topo mb-2">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a href="/paginaInicial" class="navbar-brand col-sm-3">
+                    <img src="/img/logo.png" height="80" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Menu Colapso">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div class="col-sm-5 ml-4">
+                    <h2 class="text-center ">Locações Cadastradas
+                        <span class="underline"></span>
+                    </h2>
+                </div>                
+                <div id="menu" class="collapse navbar-collapse col-sm">
+                    <ul class="navbar-nav text-light ">
+                        <li class="nav-item">
+                            <a href="/paginaInicial" class="btn btn-outline-light btn-sm p-2"><i class="fas fa-sign-out-alt">Inicio</i></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div id="clientes" class="container-fluid py-4 bg-clientes mb-5">
+        <div class="py-2">
+            <div class="container-fluid">
+                <div class="card mt-4 table-responsive">
+                    <div class="card-header">
+                        <form class="form-inline">
+                        <i class="fa fa-table col-6"> Locações no camping </i>
+                          <input type="text" class="form-control mr-sm-2 col-4" id="filtro-nome" onchange="mostraNome()" placeholder="Pesquisar por nome..." aria-label="Pesquisar">
+                            <button class="btn btn-primary my-2 my-sm-0" type="button">Buscar</button>
+                        </form>
+                    </div>
+                    <div  class="card-body">
+                        <table class="table table-bordered table-hover table-sm" id="lista" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Data de Entrada</th>
+                                    <th>Data de Saida</th>
+                                    <th>Celular</th>                                
+                                    <th>CPF</th>
+                                    <th>Código da Locação</th>
+                                </tr>
+                            </thead>
+                            </tfoot> 
+                            <tbody th:if="${listarLocacao.size() > 0}"> 
+                                <tr th:each="locacao : ${listarLocacao}" id="nomeCliente">
+                                    <td th:text="${locacao.nome}">
+                                    </td>
+                                    <td th:text="${locacao.email}">
+                                    </td>
+                                    <td th:text="${locacao.dataCheckin}">
+                                    </td>
+                                    <td th:text="${locacao.dataCheckout}">
+                                    </td>
+                                    <td th:text="${locacao.telefone}">
+                                    </td>
+                                    <td th:text="${locacao.cpf}">
+                                    </td>
+                                    <td th:text="${locacao.id}">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary p-1 mx-1" th:href="@{/cadastrarLocacao/{id}(id=${locacao.id})}">Alterar</a>
+                                        <a class="btn btn-danger p-1 mx-1" th:href="@{/mostrarLocacao/{id}(id=${locacao.id})}">Excluir</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodape_cliente mt-5">
+        <div class="container-fluid bg-rodape2 pb-5">
+            <div class="container">
+                <img src="img/logoAzul.png" class="img-fluid mx-auto d-block">
+                <div class="text-center pt-1">
+                    <a href="https://www.facebook.com/" class="icone-social" target="_blank"><i class="fab fa-facebook-square fa-lg"></i></a>
+                    <a href="https://www.instagram.com/" class="icone-social" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://twitter.com/login?lang=pt" class="icone-social" target="_blank"><i class="fab fa-twitter-square fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/home" class="icone-social" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript" src="js/jquery-min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.min.js"></script>
+<script type="text/javascript" src="js/waypoints.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<script>
+
+    //FUNÇÃO FILTRA POR NOME
+    function mostraNome() {
+        var filtro = document.getElementById('filtro-nome');
+        var tabela = document.getElementById('lista');
+        var nomeFiltro = filtro.value;
+        for (var i = 1; i < tabela.rows.length; i++) {
+            var conteudoCelula = tabela.rows[i].cells[0].innerText;
+            var corresponde = conteudoCelula.indexOf(nomeFiltro) == 0;
+            tabela.rows[i].style.display = corresponde ? '' : 'none';
+        }
+    }
+    
+</script>
+
+</body>
+
+</html>

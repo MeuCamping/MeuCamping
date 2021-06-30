@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Camping</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body class="corFundoBodyMostrarLotes">
+    <div class="container-fluid bg-topo">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a href="/paginaInicial" class="navbar-brand col-sm-3">
+                    <img src="/img/logo.png" height="80" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Menu Colapso">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div class="col-sm-5 ml-4">
+                    <h2 class="text-center ">Lotes
+                        <span class="underline"></span>
+                    </h2>
+                </div>
+                <div id="menu" class="collapse navbar-collapse col-sm">
+                    <ul class="navbar-nav text-light ">
+                        <li class="nav-item">
+                            <a href="/cadastrarLote" class="btn btn-outline-light btn-sm p-2" tabindex="-1" role="button">Cadastrar Lote</a>
+                            <a href="/paginaInicial" class="btn btn-outline-light btn-sm p-2"><i class="fas fa-sign-out-alt">Inicio</i></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div id="clientes" class="container-fluid py-4 bg-clientes mb-5">
+        <div class="py-2">
+            <div class="container-fluid">
+                <div class="card mt-4 table-responsive">
+                    <div class="card-header">
+                        <form class="form-inline justify-content-center">
+                            <i class="fa fa-table col-6 text-center"> Lotes cadastrados no camping </i>
+                        </form>
+                    </div>
+                    <div  class="card-body">
+                        <div class="row py-4"  th:if="${listarLotes.size() != null}" id="lista">
+                            <div class="col-sm-6 col-md-3 col-xs-12" th:each="lotes : ${listarLotes}" id="nomeCliente">
+                                <div class="tabela-preco sombra">
+                                    <div class="preco-detalhe">
+                                        <h2 th:href="@{/mostrarLotes/{id}(id=${lotes.id})}" th:text="|LOTE ${lotes.numero_lote}|"></h2>
+                                        <span th:href="@{/mostrarLotes/{id}(id=${lotes.id})}" th:text="|R$ ${lotes.preco}|"></span>
+                                        <ul>
+                                            <li th:href="@{/mostrarLotes/{id}(id=${lotes.id})}" th:text="|Área: ${lotes.area}|"></li>
+                                            <li th:href="@{/mostrarLotes/{id}(id=${lotes.id})}" th:text="|${lotes.descricao}|"></li>
+                                            <li>
+                                                <a class="btn btn-primary p-1 mx-1" th:href="@{/cadastrarLote/{id}(id=${lotes.id})}">Alterar</a>
+                                                <a class="btn btn-danger p-1 mx-1" th:href="@{/mostrarLotes/{id}(id=${lotes.id})}">Excluir</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodape_cliente mt-5">
+        <div class="container-fluid bg-rodape2 pb-5">
+            <div class="container">
+                <img src="/img/logoAzul.png" class="img-fluid mx-auto d-block">
+                <div class="text-center pt-1">
+                    <a href="https://www.facebook.com/" class="icone-social" target="_blank"><i class="fab fa-facebook-square fa-lg"></i></a>
+                    <a href="https://www.instagram.com/" class="icone-social" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://twitter.com/login?lang=pt" class="icone-social" target="_blank"><i class="fab fa-twitter-square fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/home" class="icone-social" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="/js/jquery-min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+</body>
+
+</html>
